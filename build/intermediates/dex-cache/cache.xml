@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/christophe/AndroidStudioProjects/SuperChat/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.2/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="7ae2d38807a43b2f2185ff4089a92c790b579e54">
+        <dex dex="/home/christophe/AndroidStudioProjects/SuperChat/app/build/intermediates/pre-dexed/debug/classes-c14a554b4ceeae0083f8ffb0657260fafe486cc5.jar" />
+    </item>
+    <item
+        jar="/home/christophe/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="/home/christophe/AndroidStudioProjects/SuperChat/app/build/intermediates/pre-dexed/debug/gson-2.3.1-c1af6fbf5458d38d30f627ce51c09f464a785084.jar" />
+    </item>
+    <item
+        jar="/home/christophe/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.2/support-annotations-21.0.2.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="99373741f99a0556ee293c41e8faa1ca3ae8a4e6">
+        <dex dex="/home/christophe/AndroidStudioProjects/SuperChat/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.2-82e9df2d43d75d69d2af621c4c33c02ebf726c62.jar" />
+    </item>
+    <item
+        jar="/home/christophe/AndroidStudioProjects/SuperChat/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.2/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="d1bf02de1c56d942e7a9d093b8610ba1ef4128e3">
+        <dex dex="/home/christophe/AndroidStudioProjects/SuperChat/app/build/intermediates/pre-dexed/debug/classes-f3bfe1d940536f69a8f592e8e15e74f784ddb325.jar" />
+    </item>
+    <item
+        jar="/home/christophe/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.4/b1b6ea3b7e4aa4f492509a4952029cd8e48019ad/commons-io-2.4.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="b1b6ea3b7e4aa4f492509a4952029cd8e48019ad">
+        <dex dex="/home/christophe/AndroidStudioProjects/SuperChat/app/build/intermediates/pre-dexed/debug/commons-io-2.4-6558bcbd09b5a0ea39df8e4c10dbd46a1fa726ec.jar" />
+    </item>
+    <item
+        jar="/home/christophe/AndroidStudioProjects/SuperChat/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.2/libs/internal_impl-21.0.2.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="962e8b12569c56dbdcf8367eb4eac8bb129cd18f">
+        <dex dex="/home/christophe/AndroidStudioProjects/SuperChat/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.2-8d59b18894afef3cae1eb91c6899a648dc7ab208.jar" />
+    </item>
+    <item
+        jar="/home/christophe/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.4.0/f36d2d4e3a36b3259aaf9d004d29b4cdc6c1bfb2/picasso-2.4.0.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="f36d2d4e3a36b3259aaf9d004d29b4cdc6c1bfb2">
+        <dex dex="/home/christophe/AndroidStudioProjects/SuperChat/app/build/intermediates/pre-dexed/debug/picasso-2.4.0-b99e75cfd87f4d26817036d054dccf72f864a428.jar" />
+    </item>
+
+</items>
