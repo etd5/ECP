@@ -1,7 +1,9 @@
 package fr.ecp.sio.superchat;
 
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.preference.Preference;
@@ -30,8 +32,11 @@ public class SettingsActivity extends PreferenceActivity {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                Intent intent=new Intent();
+                                setResult(2,intent);
                                 AccountManager.logout(SettingsActivity.this);
                                 preference.setEnabled(false);
+                                SettingsActivity.this.finish();
                             }
                         })
                         .setNegativeButton(android.R.string.no, null)
