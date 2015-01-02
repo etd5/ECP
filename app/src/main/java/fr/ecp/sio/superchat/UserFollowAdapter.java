@@ -55,9 +55,15 @@ public class UserFollowAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.follow_item, parent, false);
         }
+        String connectedUser = AccountManager.getUserHandle(parent.getContext());
         UserFollow user = getItem(position);
         TextView handleView = (TextView) convertView.findViewById(R.id.handle);
-        handleView.setText(user.getHandle());
+        if (connectedUser.toLowerCase().equals(user.getHandle().toLowerCase())) {
+            handleView.setText(user.getHandle() + " (Moi)");
+        } else {
+            handleView.setText(user.getHandle());
+        }
+
         TextView followView = (TextView) convertView.findViewById(R.id.followStatus);
         followView.setText(user.getFollowText());
         ImageView profilePictureView = (ImageView) convertView.findViewById(R.id.profile_picture);

@@ -10,6 +10,9 @@ import android.view.MenuItem;
 public class UsersActivity extends ActionBarActivity {
 
     private static final int REQUEST_LOGIN_FOR_FOLLOW = 1;
+    private static final int ORIGINE_SETTING = 1;
+    private static final int ORIGINE_FOLLOW = 2;
+    private int testOrigine = ORIGINE_SETTING;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +37,13 @@ public class UsersActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            setTestOrigine(ORIGINE_SETTING);
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
 
         if (id == R.id.follow) {
+            setTestOrigine(ORIGINE_FOLLOW);
             if (AccountManager.isConnected(UsersActivity.this)) {
                 startActivity(new Intent(this, FollowActivity.class));
             } else {
@@ -54,7 +59,16 @@ public class UsersActivity extends ActionBarActivity {
 
     public void loginSuccessfull() {
 //        super.onActivityResult(requestCode, resultCode, data);
+        if (getTestOrigine() == ORIGINE_FOLLOW) {
             startActivity(new Intent(this, FollowActivity.class));
+        }
     }
 
+    public int getTestOrigine() {
+        return testOrigine;
+    }
+
+    public void setTestOrigine(int testOrigine) {
+        this.testOrigine = testOrigine;
+    }
 }

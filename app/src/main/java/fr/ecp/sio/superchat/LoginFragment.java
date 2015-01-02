@@ -90,11 +90,10 @@ public class LoginFragment extends DialogFragment implements DialogInterface.OnS
             protected void onPostExecute(String token) {
                 if (token != null) {
                     Fragment target = getTargetFragment();
+                    AccountManager.login(getActivity(), token, handle);
                     if (target != null) {
                         target.onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, null);
-                        String test = getActivity().getPackageName();
                     }
-                    AccountManager.login(getActivity(), token, handle);
                     dismiss();
                     Toast.makeText(getActivity(), R.string.login_success, Toast.LENGTH_SHORT).show();
                     ((UsersActivity) getActivity()).loginSuccessfull();

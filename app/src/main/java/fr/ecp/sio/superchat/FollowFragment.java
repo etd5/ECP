@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -69,33 +70,39 @@ public class FollowFragment extends ListFragment implements LoaderManager.Loader
     public void onListItemClick(ListView l, View v, int position, long id) {
         final UserFollow user = mListAdapter.getItem(position);
         final String title, response;
+        String masterUser = AccountManager.getUserHandle(getActivity());
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        if ("follower".equals(user.getFollower())) {
-            title = "Ne plus suivre " + user.getHandle();
-            response = user.getHandle() + " n'est plus suivi.";
+        if (masterUser.toLowerCase().equals(user.getHandle().toLowerCase())) {
+            Toast.makeText(getActivity(), "Vous ne pouvez pas vous suivre vous même !", Toast.LENGTH_SHORT).show();
         } else {
-            title = "Suivre " + user.getHandle();
-            response = user.getHandle() + " est maintenant suivi.";
-        }
-        builder
-                .setTitle("Suivre / ne plus suivre un utilisateur")
-                .setMessage(title)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (traiterSuivi(user)) {
-                            Toast.makeText(getActivity(), response,
-                                    Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getActivity(), "une erreur s'est produite pendant la mise à jour.",
-                                    Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            if ("follower".equals(user.getFollower())) {
+                title = "Ne plus suivre " + user.getHandle() + " ?";
+                response = user.getHandle() + " n'est plus suivi.";
+            } else {
+                title = "Suivre " + user.getHandle() + " ?";
+                response = user.getHandle() + " est maintenant suivi.";
+            }
+            builder
+                    .setTitle("Suivre / ne plus suivre un utilisateur")
+                    .setMessage(title)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (traiterSuivi(user)) {
+                                Toast.makeText(getActivity(), response,
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getActivity(), "une erreur s'est produite pendant la mise à jour.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                })
-                .setNegativeButton("No", null)						//Do nothing on no
-                .show();
+                    })
+                    .setNegativeButton("No", null)						//Do nothing on no
+                    .show();
+        }
+
 
     }
 
@@ -105,6 +112,8 @@ public class FollowFragment extends ListFragment implements LoaderManager.Loader
         if ("follower".equals(follower.getFollower())) {
             try {
                 new ApiClient().delFollower(masterUser, follower.getHandle());
+                getLoaderManager().restartLoader(LOADER_FOLLOW_USERS, null, this);
+                mListAdapter.notifyDataSetChanged();
                 return  true;
             } catch (IOException e) {
                 Log.e(PostActivity.class.getName(), "Delfollower failed", e);
@@ -112,9 +121,13 @@ public class FollowFragment extends ListFragment implements LoaderManager.Loader
         } else {
             try {
                 new ApiClient().addFollower(masterUser, follower.getHandle());
+                getLoaderManager().restartLoader(LOADER_FOLLOW_USERS, null, this);
+                mListAdapter.notifyDataSetChanged();
                 return true;
-            } catch (IOException e) {
-                Log.e(PostActivity.class.getName(), "Add follower failed", e);
+            } catch (IOException io) {
+                Log.e(PostActivity.class.getName(), "Add follower failed", io);
+            } catch (Exception ex) {
+                Log.e(PostActivity.class.getName(), "Add follower failed", ex);
             }
         }
         return false;

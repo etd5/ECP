@@ -31,7 +31,7 @@ public class FollowActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        /*Cette fois, il n'y a que les préférences.
+        /*Cette fois, il n'y a que les préférences (par rapport à UsersActivity).
           Si on se déconnecte, il faut que l'activité se ferme.
          */
         if (id == R.id.action_settings) {
@@ -45,7 +45,7 @@ public class FollowActivity extends ActionBarActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        // check if the request code is same as what is passed  here it is 2
+        // On vérifie la requestCode
         if (requestCode == FOLLOW_AVERTISSEUR_SORTIE)
         {
             this.finish();

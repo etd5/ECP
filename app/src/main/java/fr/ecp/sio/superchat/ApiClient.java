@@ -2,6 +2,7 @@ package fr.ecp.sio.superchat;
 
 import android.content.Context;
 import android.net.http.AndroidHttpClient;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -36,24 +37,27 @@ public class ApiClient {
 
     public String login(String handle, String password) throws IOException {
 
-        HttpResponse response;
-        AndroidHttpClient httpclient = AndroidHttpClient.newInstance("Android");
+        HttpPost httppost = new HttpPost(API_BASE + "sessions");
+        String response;
+        //HttpResponse response;
 
         try {
-            HttpPost httppost = new HttpPost(API_BASE + "sessions");
             List<NameValuePair> nameValuePair  = new ArrayList<NameValuePair>();
             nameValuePair.add(new BasicNameValuePair("handle", handle));
             nameValuePair.add(new BasicNameValuePair("password", password));
-            httppost.setEntity(new UrlEncodedFormEntity(nameValuePair));
-            response = httpclient.execute(httppost);
+            httppost.setEntity(new UrlEncodedFormEntity(nameValuePair, "UTF-8"));
+            CallHttpPost callHttpPost = new CallHttpPost(httppost);
+            Log.d("Debug_Appel callHttpPost", "ok");
+            new Thread(callHttpPost).start();
+            response = callHttpPost.getValue();
+            //response = httpclient.execute(httppost);
 
-        } catch (ClientProtocolException e) {
-            return "ClientProtocolException";
+//        } catch (ClientProtocolException e) {
+//            return "ClientProtocolException";
         } catch (IOException e) {
             return "IOException";
         }
-        httpclient.close();
-        return response.toString();
+        return (response == null) ? "" : response.toString();
     }
 
     public List<User> getUsers() throws IOException {
@@ -108,23 +112,28 @@ public class ApiClient {
 
     public String postTweet(String handle, String content) throws IOException {
 
-        HttpResponse response;
-        AndroidHttpClient httpclient = AndroidHttpClient.newInstance("Android");
+        HttpPost httppost = new HttpPost(API_BASE + "handle/tweets");
+        //HttpResponse response;
+        String response;
+
         try {
-            HttpPost httppost = new HttpPost(API_BASE + " handle/tweets");
             List<NameValuePair> nameValuePair  = new ArrayList<NameValuePair>();
             nameValuePair.add(new BasicNameValuePair("handle", handle));
             nameValuePair.add(new BasicNameValuePair("content", content));
-            httppost.setEntity(new UrlEncodedFormEntity(nameValuePair));
-            response = httpclient.execute(httppost);
+            httppost.setEntity(new UrlEncodedFormEntity(nameValuePair, "UTF-8"));
+            CallHttpPost callHttpPost = new CallHttpPost(httppost);
+            Log.d("Debug_Appel callHttpPost", "ok");
+            new Thread(callHttpPost).start();
+            response = callHttpPost.getValue();
+            //response = httpclient.execute(httppost);
 
-        } catch (ClientProtocolException e) {
-            return "ClientProtocolException";
+//        } catch (ClientProtocolException e) {
+//            return "ClientProtocolException";
         } catch (IOException e) {
             return "IOException";
         }
-        httpclient.close();
-        return response.toString();
+
+        return (response == null) ? "" : response.toString();
 
     }
 
@@ -141,13 +150,13 @@ public class ApiClient {
         HttpPost httppost = new HttpPost(API_BASE + "handle/followers");
         //HttpResponse response;
         String response;
-        AndroidHttpClient httpclient = AndroidHttpClient.newInstance("Android");
+
         try {
             List<NameValuePair> nameValuePair  = new ArrayList<NameValuePair>();
             nameValuePair.add(new BasicNameValuePair("handle", handle));
             nameValuePair.add(new BasicNameValuePair("followers", follower));
             nameValuePair.add(new BasicNameValuePair("method", method));
-            httppost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+            httppost.setEntity(new UrlEncodedFormEntity(nameValuePair, "UTF-8"));
             CallHttpPost callHttpPost = new CallHttpPost(httppost);
             Log.d("Debug_Appel callHttpPost", "ok");
             new Thread(callHttpPost).start();
@@ -159,7 +168,7 @@ public class ApiClient {
         } catch (IOException e) {
             return "IOException";
         }
-        //httpclient.close();
+
         return (response == null) ? "" : response.toString();
     }
 

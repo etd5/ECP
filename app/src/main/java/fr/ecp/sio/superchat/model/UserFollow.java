@@ -48,13 +48,13 @@ public class UserFollow implements Parcelable {
 
     public String getFollowText() {
         if (("following".equals(following)) && ("follower".equals(follower))) {
-            return ("Follower et following");
+            return ("Personne qui me suit et que je suis.");
         }
         if ("following".equals(following)) {
-            return ("Following");
+            return ("Personne qui me suit.");
         }
         if ("follower".equals(follower)) {
-            return ("Follower");
+            return ("Personne que je suis.");
         }
         return "";
     }
