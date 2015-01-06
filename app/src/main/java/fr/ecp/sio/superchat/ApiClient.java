@@ -32,7 +32,9 @@ import fr.ecp.sio.superchat.model.UserFollow;
 public class ApiClient {
 
     //private static final String API_BASE = "http://hackndo.com:5667/mongo/";
-    private static final String API_BASE = "http://vps99972.ovh.net:5000/";
+    private static final String API_BASE = "http://vps99972.ovh.net:5660/";
+    //private static final String API_BASE = "http://vps99972.ovh.net:8080/";
+    //private static final String API_BASE = "http://127.0.0.1:5000/";
 
 
     public String login(String handle, String password) throws IOException {
